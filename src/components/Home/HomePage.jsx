@@ -1,6 +1,6 @@
 "use client"
 import { login, logout, selectUser } from '@/lib/features/userSlice'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Sidebar from '../Sidebar/Sidebar';
 import Chat from '../Chat/Chat';
@@ -10,10 +10,6 @@ import { auth } from '@/firebase';
 
 
 export default function HomePage() {
-  const [menuState,setMenuState] = useState(false);
-  const hideInputOnMenu = (open) => {
-    setMenuState(open);
-  }
 
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
@@ -38,8 +34,8 @@ export default function HomePage() {
     <div className="flex fixed w-screen h-screen">
        {user ? (
         <>
-          <Sidebar hideInputOnMenu={hideInputOnMenu}></Sidebar>
-          <Chat menuState={menuState}></Chat>
+          <Sidebar></Sidebar>
+          <Chat ></Chat>
         </>
       ) : (
         <Login/>

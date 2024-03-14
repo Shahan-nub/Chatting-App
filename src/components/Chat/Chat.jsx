@@ -10,7 +10,7 @@ import db from "@/firebase";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { selectMessage, setMessageInfo } from "@/lib/features/messageSlice";
 
-export default function Chat({menuState}) {
+export default function Chat() {
   const dispatch = useDispatch();
   const newMessageFromStore = useSelector(selectMessage);
 
@@ -53,7 +53,7 @@ export default function Chat({menuState}) {
           })}
         </div>
       </div>
-      <ChatInput menuState={menuState} handleMessageUpdate={onMessageUpdate}></ChatInput>
+      <ChatInput handleMessageUpdate={onMessageUpdate}></ChatInput>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import { setMenu } from "@/lib/features/MenuSlice";
 import { setChannelInfo } from "@/lib/features/channelSlice";
 import { MdDelete } from "react-icons/md";
 import { useDispatch } from "react-redux";
@@ -9,6 +10,7 @@ export default function Channel({id,channelName}) {
       channelId:id,
       channelName:channelName
     }))
+    dispatch(setMenu())
   }
   return (
     <div onClick={handleChannelChange}

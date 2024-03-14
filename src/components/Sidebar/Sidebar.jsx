@@ -6,7 +6,7 @@ import SidebarChannels from "./SidebarChannels";
 import VC from "./VC";
 import Profile from "./Profile";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "@/lib/features/userSlice";
 import { RiArrowDropUpLine } from "react-icons/ri";
 
@@ -21,17 +21,15 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore";
+import { selectMenu, setMenu } from "@/lib/features/MenuSlice";
 
-export default function Sidebar({hideInputOnMenu}) {
+export default function Sidebar() {
   const user = useSelector(selectUser);
   const src = user.photo;
   console.log(src);
 
-  const [open, setOpen] = useState(true);
-  const MenuSlider = () => {
-    setOpen(!open);
-    hideInputOnMenu(open);
-  };
+  const menuState = useSelector(selectMenu);
+  const dispatch = useDispatch()
 
   const [channels, setChannels] = useState([]);
   useEffect(() => {
@@ -97,19 +95,18 @@ export default function Sidebar({hideInputOnMenu}) {
   };
   return (
     <>
-    <FiMenu onClick={MenuSlider} className={`text-slate-200 hover:text-white font-medium md:text-2xl text-lg cursor-pointer lg:hidden ${open ? "hidden":"visible"}`} ></FiMenu>
     <div
-      className={`flex lg:visible  flex-col  justify-between bg-dc-bg min-h-screen  h-full lg:w-1/5 md:w-3/5 w-4/5 lg:pt-[9px]
-      ${open ? "visible": "hidden "}
+      className={`flex lg:visible  flex-col  justify-between bg-dc-bg min-h-screen  h-full lg:w-1/5  w-full lg:pt-[9px]
+      ${menuState ? "visible": "hidden "}
     `}
     >
-      <div className="flex flex-col">
+      <div className="flex w-screen flex-col">
         {/* USERNAME  */}
         <div className="flex justify-between w-full items-center lg:pb-[12px] px-4  border-color-1 shadow-lg">
           <h2 className="text-slate-200 font-semibold text-lg md:text-3xl">
             Niggaslayer
           </h2>
-          <FiMenu onClick={MenuSlider}
+          <FiMenu onClick={() => dispatch(setMenu())}
           className={`text-slate-200 hover:text-white font-medium md:text-2xl text-lg cursor-pointer lg:hidden`} />
         </div>
 

@@ -12,11 +12,14 @@ import { collection, doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { selectUser } from "@/lib/features/userSlice";
 import db from "@/firebase";
 import { Firestore } from "firebase/firestore";
+import { selectMenu } from "@/lib/features/MenuSlice";
 
-export default function ChatInput({handleMessageUpdate, menuState}) {
+export default function ChatInput({handleMessageUpdate}) {
   const activeUser = useSelector(selectUser);
   const activeChannelId = useSelector(selectChannelId);
   const activeChannel = useSelector(selectChannelName);
+
+  const menuState = useSelector(selectMenu);
 
   const newMessage = useRef();
   
@@ -48,7 +51,7 @@ export default function ChatInput({handleMessageUpdate, menuState}) {
         !activeChannel && alert("please select a channel before typing!")
       }
       className={`lg:w-[78%] w-[98%] fixed bottom-0 right-[1%] mx-auto my-1 md:my-3 rounded-lg shadow-lg bg-color-2 flex items-center py-1 lg:py-2 px-2 lg:px-4 justify-between
-      ${menuState ? "visible" : "hidden"}
+      ${menuState ? "hidden" : "visible"}
       `}
     >
       <div className="flex flex-1 items-center">
