@@ -21,7 +21,7 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore";
-import { selectMenu, setMenu } from "@/lib/features/MenuSlice";
+import { selectMenu, setMenu } from "@/lib/features/menuSlice";
 import { selectChannelName } from "@/lib/features/channelSlice";
 
 export default function Sidebar() {

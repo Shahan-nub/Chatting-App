@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import userSlice from "./features/userSlice";
 import channelSlice from "./features/channelSlice";
 import messageSlice from "./features/messageSlice";
-import menuSlice from "./features/MenuSlice";
+import menuSlice from "./features/menuSlice";
 
 export const DiscordStore =  configureStore({
     reducer:{

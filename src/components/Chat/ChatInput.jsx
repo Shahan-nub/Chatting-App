@@ -8,11 +8,10 @@ import {
   selectChannelName,
 } from "@/lib/features/channelSlice";
 import { useRef } from "react";
-import { collection, doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { collection, doc, setDoc } from "firebase/firestore";
 import { selectUser } from "@/lib/features/userSlice";
 import db from "@/firebase";
-import { Firestore } from "firebase/firestore";
-import { selectMenu } from "@/lib/features/MenuSlice";
+import { selectMenu } from "@/lib/features/menuSlice";
 
 export default function ChatInput({handleMessageUpdate}) {
   const activeUser = useSelector(selectUser);

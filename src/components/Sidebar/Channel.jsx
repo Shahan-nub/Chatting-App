@@ -1,4 +1,4 @@
-import { setMenu } from "@/lib/features/MenuSlice";
+import { setMenu } from "@/lib/features/menuSlice";
 import { setChannelInfo } from "@/lib/features/channelSlice";
 import { MdDelete } from "react-icons/md";
 import { useDispatch } from "react-redux";

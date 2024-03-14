@@ -1,4 +1,4 @@
-import { selectMenu, setMenu } from "@/lib/features/MenuSlice";
+import { selectMenu, setMenu } from "@/lib/features/menuSlice";
 import { selectChannelName } from "@/lib/features/channelSlice"
 import { MdMenu } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux"
