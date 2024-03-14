@@ -25,10 +25,10 @@ export default function Profile({ userpfp, username, userId }) {
 
       {/* USERNAME AND ID  */}
       <div className="flex flex-col">
-        <h2 className="text-slate-200 font-medium md:font-semibold">
+        <h2 className="text-slate-200 text-xs lg:text-base font-medium md:font-semibold">
           {username}
         </h2>
-        <p className="text-color-1 lg:font-medium font-light"># {userId}</p>
+        <p className="text-color-1 lg:font-medium font-extralight"># {userId}</p>
       </div>
 
       {/* ICONS  */}

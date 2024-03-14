@@ -22,7 +22,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 
-export default function Sidebar() {
+export default function Sidebar({hideInputOnMenu}) {
   const user = useSelector(selectUser);
   const src = user.photo;
   console.log(src);
@@ -30,6 +30,7 @@ export default function Sidebar() {
   const [open, setOpen] = useState(true);
   const MenuSlider = () => {
     setOpen(!open);
+    hideInputOnMenu(open);
   };
 
   const [channels, setChannels] = useState([]);
@@ -90,7 +91,7 @@ export default function Sidebar() {
   //     console.log("error while deleting channel",error)
   //   }
   // }
-  const [channelsDD, setChannelsDD] = useState(true);
+  const [channelsDD, setChannelsDD] = useState(false);
   const handleChannelsDD = () => {
     setChannelsDD(!channelsDD);
   };
@@ -98,8 +99,8 @@ export default function Sidebar() {
     <>
     <FiMenu onClick={MenuSlider} className={`text-slate-200 hover:text-white font-medium md:text-2xl text-lg cursor-pointer lg:hidden ${open ? "hidden":"visible"}`} ></FiMenu>
     <div
-      className={`lg:flex lg:visible  flex-col  justify-between bg-dc-bg min-h-screen  h-full lg:w-1/5 md:w-3/5 w-4/5 lg:pt-[9px]
-      ${open ? "visible": "hidden"}
+      className={`flex lg:visible  flex-col  justify-between bg-dc-bg min-h-screen  h-full lg:w-1/5 md:w-3/5 w-4/5 lg:pt-[9px]
+      ${open ? "visible": "hidden "}
     `}
     >
       <div className="flex flex-col">
