@@ -29,17 +29,7 @@ export default function ChatInput({handleMessageUpdate}) {
           const NewMSG = {
             message: msg,
             timestamp:new Date(),
-            tsString:new Date().toLocaleTimeString(),
-            // timestamp: serverTimestamp(),
-            // .toDate().toLocaleSting('en-US', {
-            //   weekday: 'long',
-            //   year: 'numeric',
-            //   month: 'long',
-            //   day: 'numeric',
-            //   hour: 'numeric', // Use 'numeric' for 24-hour clock
-            //   minute: '2-digit',
-            //   // hour12: true // **Not applicable to timestamps**
-            // }),
+            tsString:new Date().toLocaleTimeString() ,
             user: activeUser,
           };
           setDoc(doc(messageRef), NewMSG);
@@ -57,7 +47,7 @@ export default function ChatInput({handleMessageUpdate}) {
       onClick={() =>
         !activeChannel && alert("please select a channel before typing!")
       }
-      className="w-[97%] mx-auto my-1 md:my-3 rounded-lg shadow-lg bg-color-2 flex items-center py-1 lg:py-2 px-2 lg:px-4 justify-between"
+      className="lg:w-[78%] w-[98%] fixed bottom-0 right-[1%] mx-auto my-1 md:my-3 rounded-lg shadow-lg bg-color-2 flex items-center py-1 lg:py-2 px-2 lg:px-4 justify-between"
     >
       <div className="flex flex-1 items-center">
         <FaCirclePlus className="text-slate-200 cursor-pointer hover:text-white text-base lg:text-xl"></FaCirclePlus>

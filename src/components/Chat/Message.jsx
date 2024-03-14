@@ -25,8 +25,8 @@ export default function Message({ messageInfo }) {
         height={35}
         className="rounded-full mx-2 lg:mx-4"
       ></Image>
-      <div className="flex flex-col">
-        <div className="flex items-center">
+      <div className="flex flex-col lg:w-auto sm:w-[90%] w-[80%]">
+        <div className="flex items-center justify-between">
           <h3 className="text-slate-300 text-sm lg:text-base font-semibold mr-4 lg:mr-8">
             {user.displayName}
           </h3>
@@ -34,7 +34,7 @@ export default function Message({ messageInfo }) {
             {ts}
           </p>
         </div>
-        <p className="text-xs lg:text-[15px] text-slate-200">{message}</p>
+        <p className="text-xs lg:text-[15px] font-extralight text-slate-200">{message}</p>
       </div>
     </div>
   );

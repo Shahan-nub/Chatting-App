@@ -31,7 +31,7 @@ export default function Chat() {
         activeChannelId,
         "messages"
       );
-      onSnapshot(query(messageRef,orderBy("timestamp","asc")), (snapshot) => {
+      onSnapshot(query(messageRef,orderBy("timestamp","desc")), (snapshot) => {
         setMessages(
           snapshot.docs.map((doc) => {
             return doc.data();
@@ -43,13 +43,15 @@ export default function Chat() {
   }, [newMessageFromStore && activeChannelId]);
 
   return (
-    <div className="lg:w-4/5 w-full min-h-screen flex flex-col justify-between">
+    <div className="lg:w-4/5 w-full max-h-screen min-h-screen flex flex-col justify-between">
       <div className="flex flex-col">
         <ChatHeader></ChatHeader>
+        <div className="overflow-scroll lg:h-[58%] sm:h-[60%] h-[78%]  no-scrollbar">
         {messages &&
           messages.map((messageInfo) => {
             return <Message key={messageInfo.timestamp} messageInfo={messageInfo}></Message>;
           })}
+        </div>
       </div>
       <ChatInput handleMessageUpdate={onMessageUpdate}></ChatInput>
     </div>

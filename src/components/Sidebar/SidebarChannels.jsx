@@ -6,7 +6,7 @@ export default function SidebarChannels({channels}) {
   
   console.log("channels are: ",channels)
   return (
-    <div className="flex flex-col justify-start ">
+    <div className="flex overflow-scroll no-scrollbar flex-col justify-start ">
       {channels.map(({id,channel}) => {
         return (
           <Channel key={id} id={id}
