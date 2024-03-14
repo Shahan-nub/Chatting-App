@@ -22,6 +22,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { selectMenu, setMenu } from "@/lib/features/MenuSlice";
+import { selectChannelName } from "@/lib/features/channelSlice";
 
 export default function Sidebar() {
   const user = useSelector(selectUser);
@@ -89,15 +90,16 @@ export default function Sidebar() {
   //     console.log("error while deleting channel",error)
   //   }
   // }
-  const [channelsDD, setChannelsDD] = useState(false);
+  const [channelsDD, setChannelsDD] = useState(true);
   const handleChannelsDD = () => {
     setChannelsDD(!channelsDD);
   };
+  const activeChannel = useSelector(selectChannelName);
   return (
     <>
     <div
-      className={`flex lg:visible  flex-col  justify-between bg-dc-bg min-h-screen  h-full lg:w-1/5  w-full lg:pt-[9px]
-      ${menuState ? "visible": "hidden "}
+      className={`flex  flex-col  justify-between bg-dc-bg min-h-screen  h-full lg:w-1/5  w-full lg:pt-[9px] 
+      // ${menuState ? "visible": " hidden lg:flex "}
     `}
     >
       <div className="flex w-screen flex-col">
@@ -106,7 +108,7 @@ export default function Sidebar() {
           <h2 className="text-slate-200 font-semibold text-lg md:text-3xl">
             Niggaslayer
           </h2>
-          <FiMenu onClick={() => dispatch(setMenu())}
+          <FiMenu onClick={() => {activeChannel && dispatch(setMenu())}}
           className={`text-slate-200 hover:text-white font-medium md:text-2xl text-lg cursor-pointer lg:hidden`} />
         </div>
 
@@ -128,7 +130,7 @@ export default function Sidebar() {
           ></FaPlus>
         </div>
         {/* CHANNELS  */}
-        <div className={`flex z-50 lg:w-auto w-[42%] ${channelsDD ? "visible" : "hidden"}`}>
+        <div className={`flex z-50 lg:w-auto sm:w-[60%] w-[42%] ${channelsDD ? "visible" : "hidden"}`}>
           <SidebarChannels channels={channels}></SidebarChannels>
         </div>
       </div>
