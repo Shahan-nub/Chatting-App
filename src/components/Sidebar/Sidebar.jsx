@@ -135,7 +135,7 @@ export default function Sidebar() {
         </div>
       </div>
 
-      <div className="flex flex-col lg:mb-3 mb-5">
+      <div className="flex flex-col lg:mb-3 sm:mb-5 mb-12">
         {/* VC  */}
         <VC></VC>
 
