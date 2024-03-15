@@ -15,7 +15,7 @@ export default function ChatHeaderTitle() {
       console.log(menuState)
       }}
       ></MdMenu>
-      <span className="text-color-1 text-base md:text-2xl lg:text-3xl mr-1 md:mr-2">#</span> {activeChannel? activeChannel : "Text Channels"}
+      <span className="text-color-1 text-base md:text-2xl text-nowrap lg:text-3xl mr-1 md:mr-2">#</span> {activeChannel? activeChannel : "Text Channels"}
     </div>
     </>
   )
