@@ -9,7 +9,7 @@ export default function ChatHeaderTitle() {
   const dispatch=useDispatch();
   return (
     <>
-    <div className="flex text-slate-200  items-center text-nowrap basis-[40%] md:ml-2 text-lg md:text-2xl font-semibold font-sans lg:pl-0 pl-10">
+    <div className="flex text-slate-200  items-center text-nowrap basis-[40%] md:ml-2 text-lg md:text-2xl font-semibold font-sans lg:pl-0 pl-7">
       <MdMenu className={`mr-4 text-xl lg:hidden`}
       onClick={() => {dispatch(setMenu());
       console.log(menuState)
