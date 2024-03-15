@@ -105,7 +105,7 @@ export default function Sidebar() {
       <div className="flex lg:w-[20vw] w-screen flex-col">
         {/* USERNAME  */}
         <div className="flex justify-between w-full items-center lg:pb-[12px] px-4  border-color-1 shadow-lg">
-          <h2 className="text-slate-200 font-semibold text-lg md:text-3xl">
+          <h2 className="text-slate-200 font-semibold text-xl md:text-3xl">
             Niggaslayer
           </h2>
           <FiMenu onClick={() => {activeChannel && dispatch(setMenu())}}
