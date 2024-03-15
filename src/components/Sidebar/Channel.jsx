@@ -16,8 +16,8 @@ export default function Channel({id,channelName}) {
   }
   return (
     <div onClick={handleChannelChange}
-    className={`group flex items-center text-nowrap text-color-1 font-medium text-sm sm:text-base hover:bg-[#5b5f65] sm:pl-4 pl-3 pr-2 sm:py-2 cursor-pointer py-1 hover:text-white transition-all duration-150
-    ${channelName===activeChannel && "bg-[rgb(57_56_61)] text-color-3 font-semibold"}
+    className={`group flex items-center text-nowrap text-color-1 font-medium text-sm sm:text-base hover:bg-[#5b5f65] sm:pl-4 pl-3 pr-2 sm:py-2 cursor-pointer py-1 hover:text-white transition-all duration-200 ease-in-out
+    ${channelName===activeChannel && "bg-[rgb(57_56_61)] text-color-3 font-semibold border-l-8 border-color-3 rounded-l-[4px] lg:rounded-l-lg"}
     `}>
         # {channelName}
         {/* <MdDelete onClick={handleDeleteChannel}

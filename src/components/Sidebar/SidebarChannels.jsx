@@ -6,7 +6,8 @@ export default function SidebarChannels({channels}) {
   
   console.log("channels are: ",channels)
   return (
-    <div className="flex flex-col lg:w-1/5  w-[100vw] lg:h-[70%] h-[60%] overflow-scroll no-scrollbar backdrop-blur-xl absolute  justify-start ">
+    // lg:h-[70%] h-[60%]
+    <div className="flex flex-col lg:w-1/5  w-[100vw] h-max  overflow-scroll no-scrollbar backdrop-blur-xl absolute  justify-start ">
       {channels.map(({id,channel}) => {
         return (
           <Channel key={id} id={id}
