@@ -8,10 +8,13 @@ import { useSelector } from "react-redux";
 
 export default function Message({ messageInfo }) {
   const { message, tsString, user } = messageInfo;
-  let ts = null;
-
-  tsString &&
-    (ts = tsString.slice(0,5));
+  console.log(tsString)
+  let tm = null;
+  let time=null;
+  if(tsString){
+    tm = tsString.split(":");
+    time=`${tm[0]}:${tm[1]}`
+  }
 
 
   const pfp = user.photo;
@@ -31,7 +34,7 @@ export default function Message({ messageInfo }) {
             {user.displayName}
           </h3>
           <p className="text-[.6rem] lg:text-xs font-semibold text-color-1 self-end">
-            {ts}
+            {time}
           </p>
         </div>
         <p className="text-xs lg:text-[15px] font-extralight text-slate-200">{message}</p>

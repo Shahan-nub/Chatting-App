@@ -46,7 +46,7 @@ export default function Chat() {
     <div className="lg:w-4/5 w-full max-h-screen min-h-screen flex flex-col justify-between">
       <div className="flex flex-col">
         <ChatHeader></ChatHeader>
-        <div className="overflow-scroll lg:h-[58%] sm:h-[60%] h-[78%]  no-scrollbar">
+        <div className="overflow-scroll  h-[88vh]  no-scrollbar">
         {messages &&
           messages.map((messageInfo) => {
             return <Message key={messageInfo.timestamp} messageInfo={messageInfo}></Message>;
