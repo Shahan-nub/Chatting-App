@@ -1,14 +1,10 @@
-import db, { collectionRef } from "@/firebase";
-import { selectChannelId } from "@/lib/features/channelSlice";
-import { collection, onSnapshot } from "firebase/firestore";
+
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { CgProfile } from "react-icons/cg";
-import { useSelector } from "react-redux";
+
 
 export default function Message({ messageInfo }) {
   const { message, tsString, user } = messageInfo;
-  console.log(tsString)
+  // console.log("tsString: ",tsString, "day: ",day)
   let tm = null;
   let time=null;
   if(tsString){
