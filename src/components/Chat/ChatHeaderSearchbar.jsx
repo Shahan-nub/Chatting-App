@@ -6,8 +6,8 @@ import { FaQuestionCircle } from "react-icons/fa";
 
 export default function ChatHeaderSearchbar() {
   return (
-    <div className="flex basis-[60%] justify-end items-center">
-      <div className="flex items-center justify-evenly w-[20%] text-gray-500 sm:mx-2 ">
+    <div className="flex basis-[40%] sm:basis-[60%] justify-end items-center">
+      <div className="flex items-center justify-evenly sm:w-[20%] text-gray-500 sm:mx-2 ">
         <FaBell className=" cursor-pointer hover:text-white"></FaBell>
         <MdLocationPin className=" cursor-pointer hover:text-white"></MdLocationPin>
         <MdPeopleAlt className=" cursor-pointer hover:text-white"></MdPeopleAlt>
