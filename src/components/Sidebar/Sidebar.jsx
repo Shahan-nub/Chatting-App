@@ -27,14 +27,14 @@ import { selectChannelName } from "@/lib/features/channelSlice";
 export default function Sidebar() {
   const user = useSelector(selectUser);
   const src = user.photo;
-  console.log(src);
+  // console.log(src);
 
   const menuState = useSelector(selectMenu);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const [channels, setChannels] = useState([]);
   useEffect(() => {
-    onSnapshot(collectionRef, (snapshot) => {
+    const response = onSnapshot(collectionRef, (snapshot) => {
       setChannels(
         snapshot.docs.map((doc) => ({
           id: doc.id,
@@ -44,6 +44,15 @@ export default function Sidebar() {
     });
     console.log(channels);
   }, [setChannels]);
+
+  // const existingChannels = async () => {
+  //   const querySnapshot = await getDocs(collectionRef);
+  //   querySnapshot.forEach((doc) => {
+  //     console.log(`${doc.id} => ${doc.data()}`);
+  //   });
+  // };
+
+  // existingChannels();
 
   //test
 
@@ -97,56 +106,75 @@ export default function Sidebar() {
   const activeChannel = useSelector(selectChannelName);
   return (
     <>
-    <div
-      className={`flex  flex-col  justify-between bg-dc-bg min-h-screen  h-full lg:w-1/5  w-full lg:pt-[9px] 
-      // ${menuState ? "visible": " hidden lg:flex "}
+      <div
+        className={`flex  flex-col  justify-between bg-dc-bg min-h-screen  h-full lg:w-1/5  w-full lg:pt-[9px] 
+      // ${menuState ? "visible" : " hidden lg:flex "}
     `}
-    >
-      <div className="flex lg:w-[20vw] w-screen flex-col">
-        {/* USERNAME  */}
-        <div className="flex justify-between w-full items-center lg:pb-[12px] px-4  border-color-1 shadow-lg">
-          <h2 className="text-slate-200 font-semibold text-xl md:text-3xl">
-            Niggaslayer
-          </h2>
-          <FiMenu onClick={() => {activeChannel && dispatch(setMenu())}}
-          className={`text-slate-200 hover:text-white font-medium md:text-2xl text-lg cursor-pointer lg:hidden`} />
-        </div>
-
-        {/* text channels Title */}
-
-        <div className="flex  justify-between items-center py-3 px-4 font-bold">
-          <div className="flex items-center">
-            {channelsDD ? (
-              <RiArrowDropUpLine onClick={handleChannelsDD} className="text-color-1 cursor-pointer hover:text-white hover:scale-105 text-3xl mr-2" />
-            ) : (
-              <RiArrowDropDownLine onClick={handleChannelsDD} className="text-color-1 cursor-pointer hover:text-white hover:scale-105 text-3xl mr-2" />
-            )}
-
-            <h2 className="text-color-1 text-lg cursor-pointer hover:text-white"  onClick={handleChannelsDD}>Text Channels</h2>
+      >
+        <div className="flex lg:w-[20vw] w-screen flex-col">
+          {/* USERNAME  */}
+          <div className="flex justify-between w-full items-center lg:pb-[12px] px-4  border-color-1 shadow-lg">
+            <h2 className="text-slate-200 font-semibold text-xl md:text-3xl">
+              YAP STATION
+            </h2>
+            <FiMenu
+              onClick={() => {
+                activeChannel && dispatch(setMenu());
+              }}
+              className={`text-slate-200 hover:text-white font-medium md:text-2xl text-lg cursor-pointer lg:hidden`}
+            />
           </div>
-          <FaPlus
-            onClick={handleAddChannel}
-            className="text-color-1 cursor-pointer hover:text-white"
-          ></FaPlus>
+
+          {/* text channels Title */}
+
+          <div className="flex  justify-between items-center py-3 px-4 font-bold">
+            <div className="flex items-center">
+              {channelsDD ? (
+                <RiArrowDropUpLine
+                  onClick={handleChannelsDD}
+                  className="text-color-1 cursor-pointer hover:text-white hover:scale-105 text-3xl mr-2"
+                />
+              ) : (
+                <RiArrowDropDownLine
+                  onClick={handleChannelsDD}
+                  className="text-color-1 cursor-pointer hover:text-white hover:scale-105 text-3xl mr-2"
+                />
+              )}
+
+              <h2
+                className="text-color-1 text-lg cursor-pointer hover:text-white"
+                onClick={handleChannelsDD}
+              >
+                Text Channels
+              </h2>
+            </div>
+            <FaPlus
+              onClick={handleAddChannel}
+              className="text-color-1 cursor-pointer hover:text-white"
+            ></FaPlus>
+          </div>
+          {/* CHANNELS  */}
+          <div
+            className={`flex z-50 lg:w-auto sm:w-[60%] w-[42%] ${
+              channelsDD ? "visible" : "hidde"
+            }`}
+          >
+            <SidebarChannels channels={channels}></SidebarChannels>
+          </div>
         </div>
-        {/* CHANNELS  */}
-        <div className={`flex z-50 lg:w-auto sm:w-[60%] w-[42%] ${channelsDD ? "visible" : "hidden"}`}>
-          <SidebarChannels channels={channels}></SidebarChannels>
+
+        <div className="flex flex-col lg:mb-3 sm:mb-5 mb-12">
+          {/* VC  */}
+          <VC></VC>
+
+          {/* PFP AND NAME  */}
+          <Profile
+            userpfp={src}
+            username={user.displayName}
+            userId={user.uid}
+          ></Profile>
         </div>
       </div>
-
-      <div className="flex flex-col lg:mb-3 sm:mb-5 mb-12">
-        {/* VC  */}
-        <VC></VC>
-
-        {/* PFP AND NAME  */}
-        <Profile
-          userpfp={src}
-          username={user.displayName}
-          userId={user.uid}
-        ></Profile>
-      </div>
-    </div>
     </>
   );
 }

@@ -11,12 +11,12 @@ const firebaseConfig = {
   storageBucket: "dc-clone-ed737.appspot.com",
   messagingSenderId: "408141116508",
   appId: "1:408141116508:web:173bbc47d54aef4db9e299",
-  measurementId: "G-NBLQ941QX2",
+  measurementId: "G-NBLQ941QX2"
 };
 
-const firebaseApp = initializeApp(firebaseConfig);
-const db = getFirestore();
-const auth = getAuth(firebaseApp);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 const collectionRef = collection(db, "channels");
 
