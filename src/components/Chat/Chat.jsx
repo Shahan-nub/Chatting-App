@@ -32,7 +32,7 @@ export default function Chat() {
         "messages"
       );
       onSnapshot(
-        query(messageRef, orderBy("timestamp", "desc")),
+        query(messageRef, orderBy("timestamp", "asc")),
         (snapshot) => {
           setMessages(
             snapshot.docs.map((doc) => {
@@ -45,27 +45,34 @@ export default function Chat() {
     }
   }, [newMessageFromStore && activeChannelId]);
 
-  // AUTO SCROLL 
+  // AUTO SCROLL
 
   const messagesEndRef = useRef(null);
 
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   return (
     <div className="lg:w-4/5 w-full max-h-screen min-h-screen flex flex-col justify-between">
       <div className="flex flex-col justify-between h-full w-full">
         <ChatHeader></ChatHeader>
-          <div className="overflow-scroll basis-[75%] max-lg:basis-[78%] no-scrollbar">
-            {messages &&
-              messages.map((messageInfo) => {
-                return (
-                  <Message
-                    key={messageInfo.timestamp}
-                    messageInfo={messageInfo}
-                  ></Message>
-                );
-              })}
-          </div>
-          <div className=""></div>
+        <div className="overflow-scroll basis-[75%] max-lg:basis-[78%] no-scrollbar">
+          {messages &&
+            messages.map((messageInfo) => {
+              return (
+                <Message
+                  key={messageInfo.timestamp}
+                  messageInfo={messageInfo}
+                ></Message>
+              );
+            })}
+          <div ref={messagesEndRef}></div>
+        </div>
         <ChatInput handleMessageUpdate={onMessageUpdate}></ChatInput>
       </div>
     </div>
