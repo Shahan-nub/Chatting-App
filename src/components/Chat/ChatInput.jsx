@@ -80,7 +80,7 @@ export default function ChatInput({ handleMessageUpdate }) {
     const file = event.target.files?.[0];
     if (file) {
       if (file.name.includes(".heic") || file.name.includes(".HEIC")) {
-        alert("heic file type is not supported on web, please use a different format.")
+        // alert("heic file type is not supported on web, please use a different format.")
         const convertedImage = await heic2any({ blob: file, toType: "image/jpeg" });
         setImage(convertedImage);
       } else {
