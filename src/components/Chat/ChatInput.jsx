@@ -17,6 +17,8 @@ import { selectMenu } from "@/lib/features/menuSlice";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { TbLoader2 } from "react-icons/tb";
 import dynamic from "next/dynamic";
+import heic2any from "heic2any";
+
 
 
 const Picker = dynamic(
@@ -77,9 +79,14 @@ export default function ChatInput({ handleMessageUpdate }) {
     setFileLoading(true);
     const file = event.target.files?.[0];
     if (file) {
-      setImage(file);
-      console.log(file);
-      // handleUpload();
+      if (file.name.includes(".heic") || file.name.includes(".HEIC")) {
+        alert("heic file type is not supported on web, please use a different format.")
+        const convertedImage = await heic2any({ blob: file, toType: "image/jpeg" });
+        setImage(convertedImage);
+      } else {
+        setImage(file);
+        console.log(file);
+      }
       setFileLoading(false);
     }
   };
@@ -88,6 +95,7 @@ export default function ChatInput({ handleMessageUpdate }) {
     const uploadImage = async () => {
       if (image) {
         setIsUploading(true);
+
         const storageRef = ref(storage, `images/${image.name}`);
         try {
           const snapshot = await uploadBytes(storageRef, image);
@@ -131,7 +139,7 @@ export default function ChatInput({ handleMessageUpdate }) {
             setImage(null);
             setImageUrl(null);
           }
-        }, 3000);
+        }, 2000);
       } catch (error) {
         console.error("Error uploading image:", error);
       }
@@ -201,7 +209,7 @@ export default function ChatInput({ handleMessageUpdate }) {
           )}
           {isUploading && (
             <p className="text-4xl text-white font-bold z-10 scale-110 transition-all duration-500 bg-color-1 rounded-md shadow-lg border-color-3 flex items-center justify-center w-max py-6 px-4">
-              Loading Image&nbsp;
+              {/* Loading Image&nbsp; */}
               <TbLoader2 className="animate-spin"></TbLoader2>
             </p>
           )}
@@ -212,7 +220,7 @@ export default function ChatInput({ handleMessageUpdate }) {
             onClick={handleUpload}
             className={` mx-1 md:mx-2 text-base lg:text-lg cursor-pointer  ${
               imageUrl
-                ? "text-blue-400 scale-105 "
+                ? "text-blue-400 scale-105 animate-bounce font-bold"
                 : "text-slate-200 hover:text-white"
             }`}
           ></FaFileUpload>
