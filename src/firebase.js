@@ -3,6 +3,7 @@ import { FirebaseApp, initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth,GoogleAuthProvider } from "firebase/auth";
 import { collection, getDocs } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCGvvplOq1kyRbcWq8ldeRPlCe_xYIoYOc",
@@ -16,6 +17,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const storage = getStorage(app);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 const collectionRef = collection(db, "channels");
@@ -30,5 +32,5 @@ const collectionRef = collection(db, "channels");
 //   })
 //   .catch((err) => console.log("couldn't get db",err.message))
 
-export { auth, provider, collectionRef };
+export { auth, provider, collectionRef, storage };
 export default db;

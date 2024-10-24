@@ -37,7 +37,7 @@ export default function Chat() {
             return doc.data();
           })
         );
-        console.log(messages);
+        // console.log(messages);
       });
     }
   }, [newMessageFromStore && activeChannelId]);

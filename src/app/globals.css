@@ -11,6 +11,10 @@ html {
   scroll-behavior: smooth;
 }
 
+.roboto-font {
+  font-family: var(--roboto-font); /* Use the CSS variable for the font */
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

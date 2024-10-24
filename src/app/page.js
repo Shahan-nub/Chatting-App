@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 
 export default function Home() {
   return (
-    <div >
+    <div className="text-roboto-500 font-roboto-500 roboto-font">
       <Provider store={DiscordStore}>
         <HomePage></HomePage>
       </Provider>
