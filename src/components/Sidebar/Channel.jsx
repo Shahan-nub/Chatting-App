@@ -2,7 +2,7 @@ import { setMenu } from "@/lib/features/menuSlice";
 import { selectChannelName, setChannelInfo } from "@/lib/features/channelSlice";
 import { MdDelete } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { CiLock } from "react-icons/ci";
+import { CiLock, CiUnlock } from "react-icons/ci";
 
 export default function Channel({ id, channelName, password }) {
   const activeChannel = useSelector(selectChannelName);
@@ -43,7 +43,8 @@ export default function Channel({ id, channelName, password }) {
       <p>
         # {channelName}
       </p> 
-      {password && <CiLock className=""></CiLock>}
+      {password && <CiLock className={`${channelName===activeChannel && "hidden"} text-lg`}></CiLock>}
+      {(password && channelName === activeChannel) && <CiUnlock className="text-lg"></CiUnlock>}
       {/* <MdDelete onClick={handleDeleteChannel}
         className="hidden group-hover:block text-color-1 hover:text-red-400"></MdDelete> */}
     </div>
