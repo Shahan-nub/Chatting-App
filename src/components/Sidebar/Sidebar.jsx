@@ -115,7 +115,7 @@ export default function Sidebar() {
           {/* USERNAME  */}
           <div className="flex justify-between w-full items-center lg:pb-[12px] px-4  border-color-1 shadow-lg">
             <h2 className="text-slate-200 font-semibold text-xl md:text-3xl">
-              YAP STATION
+              YAP JOINT
             </h2>
             <FiMenu
               onClick={() => {
