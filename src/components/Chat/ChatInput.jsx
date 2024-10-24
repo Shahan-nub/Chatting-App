@@ -16,17 +16,18 @@ import db, { storage } from "@/firebase";
 import { selectMenu } from "@/lib/features/menuSlice";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { TbLoader2 } from "react-icons/tb";
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
 import heic2any from "heic2any";
+import EmojiPicker from "emoji-picker-react";
 
 
 
-const Picker = dynamic(
-  () => {
-    return import("emoji-picker-react");
-  },
-  { ssr: false }
-);
+// const Picker = dynamic(
+//   () => {
+//     return import("emoji-picker-react");
+//   },
+//   { ssr: false }
+// );
 
 export default function ChatInput({ handleMessageUpdate }) {
   const activeUser = useSelector(selectUser);
@@ -228,7 +229,7 @@ export default function ChatInput({ handleMessageUpdate }) {
           <FaSmile onClick={() => setShowEmoji(!showEmoji)} className="text-slate-200 mx-1 md:mx-2 text-base lg:text-lg cursor-pointer hover:text-white"></FaSmile>
           {showEmoji && (
             <div className="absolute bottom-0 left-[10%]">
-              <Picker onEmojiClick={onEmojiClick}></Picker>
+              <EmojiPicker onEmojiClick={onEmojiClick}></EmojiPicker>
             </div>
           )}
         </div>
