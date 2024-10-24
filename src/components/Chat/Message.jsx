@@ -8,7 +8,7 @@ export default function Message({ messageInfo }) {
   let tm = null;
   let time=null;
   if(tsString){
-    console.log(tsString)
+    // console.log(tsString)
     tm = tsString.split(":");
     time=`${tm[0]}:${tm[1]}`
   }
