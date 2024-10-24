@@ -16,8 +16,6 @@ import db, { storage } from "@/firebase";
 import { selectMenu } from "@/lib/features/menuSlice";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { TbLoader2 } from "react-icons/tb";
-// import dynamic from "next/dynamic";
-import heic2any from "heic2any";
 import EmojiPicker from "emoji-picker-react";
 
 
@@ -81,9 +79,7 @@ export default function ChatInput({ handleMessageUpdate }) {
     const file = event.target.files?.[0];
     if (file) {
       if (file.name.includes(".heic") || file.name.includes(".HEIC")) {
-        // alert("heic file type is not supported on web, please use a different format.")
-        const convertedImage = await heic2any({ blob: file, toType: "image/jpeg" });
-        setImage(convertedImage);
+        alert("heic file type is not supported on web, please use a different format.")
       } else {
         setImage(file);
         console.log(file);
@@ -160,7 +156,7 @@ export default function ChatInput({ handleMessageUpdate }) {
         onClick={() =>
           !activeChannel && alert("please select a channel before typing!")
         }
-        className={`lg:w-[78%] w-[98%] backdrop-blur-xl fixed bottom-0 right-[1%] mx-auto my-1 md:my-3 rounded-lg shadow-lg bg-color-2 flex items-center py-1 lg:py-2 px-2 lg:px-4 justify-between
+        className={`w-[98%] backdrop-blur-xl mx-auto my-1 md:my-3 rounded-lg shadow-lg bg-color-2 flex items-center py-1 lg:py-2 px-2 lg:px-4 justify-between basis-[10%] max-lg:basis-[8%]
         ${menuState ? "hidden lg:flex" : "visible"}
         `}
       >
