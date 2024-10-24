@@ -54,12 +54,12 @@ export default function Sidebar() {
   const handleAddChannel = async () => {
     // const newChannelName = prompt("Enter new channel name: ");
     const newChannelName = channelNameRef.current.value;
-    // const password = channelPasswordRef.current.value;
+    const password = channelPasswordRef.current.value;
     if (newChannelName) {
       try {
         const newChannel = {
           channelName: newChannelName,
-          // channelPassword: password,
+          channelPassword: password==="" && null,
         };
 
         setDoc(doc(collectionRef), newChannel);
@@ -93,14 +93,14 @@ export default function Sidebar() {
               placeholder="Enter your channel name..."
               className="bg-black rounded-sm border-1 border-white  focus:border-white text-white px-3 py-2 text-xs lg:text-base"
             />
-            {/* <label className="text-xs lg:text-sm whitespace-nowrap">{`Password: (ignore to create public channel)`}</label>
+            <label className="text-xs lg:text-base whitespace-nowrap">{`Password: (ignore to create public channel)`}</label>
 
             <input
               ref={channelPasswordRef}
               type="text"
               placeholder="Enter password..."
-              className="bg-black rounded-sm border-1 border-white focus:border-white text-white px-3 py-2 text-xs lg:text-sm"
-            /> */}
+              className="bg-black rounded-sm border-1 border-white focus:border-white text-white px-3 py-2 text-xs lg:text-base"
+            />
           
               <button
                 type="submit"
