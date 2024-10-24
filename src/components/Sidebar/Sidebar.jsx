@@ -5,11 +5,11 @@ import { FiMenu } from "react-icons/fi";
 import SidebarChannels from "./SidebarChannels";
 import VC from "./VC";
 import Profile from "./Profile";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "@/lib/features/userSlice";
 import { RiArrowDropUpLine } from "react-icons/ri";
-
+import { IoIosClose } from "react-icons/io";
 import db, { collectionRef } from "@/firebase";
 import { collection, addDoc } from "firebase/firestore/lite";
 import {
@@ -45,38 +45,21 @@ export default function Sidebar() {
     console.log(channels);
   }, [setChannels]);
 
-  // const existingChannels = async () => {
-  //   const querySnapshot = await getDocs(collectionRef);
-  //   querySnapshot.forEach((doc) => {
-  //     console.log(`${doc.id} => ${doc.data()}`);
-  //   });
-  // };
-
-  // existingChannels();
-
-  //test
-
-  // let books=[];
-  // useEffect(() => {
-  //   getDocs(collectionRef)
-  //   .then((snapshot) => {
-  //     snapshot.docs.forEach((doc) => {
-  //       books.push({...doc.data(), id: doc.id})
-  //     })
-  //     console.log("books: ",books);
-  //   }).catch((err) => console.log("err while collecting data",err))
-  //   setChannels(books);
-  //   console.log("channels: ",channels)
-  // }, [setChannels]);
-
   // add channels
 
+  const channelNameRef = useRef();
+  const channelPasswordRef = useRef();
+  const [showAddChannelForm, setShowAddChannelForm] = useState(false);
+
   const handleAddChannel = async () => {
-    const newChannelName = prompt("Enter new channel name: ");
+    // const newChannelName = prompt("Enter new channel name: ");
+    const newChannelName = channelNameRef.current.value;
+    // const password = channelPasswordRef.current.value;
     if (newChannelName) {
       try {
         const newChannel = {
           channelName: newChannelName,
+          // channelPassword: password,
         };
 
         setDoc(doc(collectionRef), newChannel);
@@ -86,19 +69,6 @@ export default function Sidebar() {
     }
   };
 
-  // delete channels
-
-  // const handleDeleteChannel =(channelToDEL) => {
-  //   console.log(channelToDEL)
-  //   const channelRef = doc(db,"channels",channelToDEL);
-  //   try {
-  //     updateDoc(channelRef,{
-  //       channelName:deleteField(channelToDEL)
-  //     })
-  //   } catch (error) {
-  //     console.log("error while deleting channel",error)
-  //   }
-  // }
   const [channelsDD, setChannelsDD] = useState(true);
   const handleChannelsDD = () => {
     setChannelsDD(!channelsDD);
@@ -106,14 +76,58 @@ export default function Sidebar() {
   const activeChannel = useSelector(selectChannelName);
   return (
     <>
+      {showAddChannelForm && (
+        <div className="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-md rounded-lg bg-[black] py-4 px-6 lg:py-6 lg:px-8 text-white">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleAddChannel();
+              setShowAddChannelForm(false);
+            }}
+            className="flex flex-col gap-3 lg:gap-4 mx-auto font-sans"
+          >
+            <label className="text-xs lg:text-base font-semibold">Channel Name:</label>
+            <input
+              ref={channelNameRef}
+              type="text"
+              placeholder="Enter your channel name..."
+              className="bg-black rounded-sm border-1 border-white  focus:border-white text-white px-3 py-2 text-xs lg:text-base"
+            />
+            {/* <label className="text-xs lg:text-sm whitespace-nowrap">{`Password: (ignore to create public channel)`}</label>
+
+            <input
+              ref={channelPasswordRef}
+              type="text"
+              placeholder="Enter password..."
+              className="bg-black rounded-sm border-1 border-white focus:border-white text-white px-3 py-2 text-xs lg:text-sm"
+            /> */}
+          
+              <button
+                type="submit"
+                className={`bg-white py-2 px-4 rounded-md text-black text-sm mt-3`}
+              >
+                Create
+              </button>
+              <button
+                type="btn"
+                onClick={() => setShowAddChannelForm(false)}
+                className={`bg-red-500 py-2 px-4 rounded-md text-white text-xl text-center font-bold`}
+              >
+                <IoIosClose className="mx-auto"></IoIosClose>
+              </button>
+          </form>
+        </div>
+      )}
+      {/* ------------- */}
+
       <div
         className={`flex  flex-col  justify-between bg-dc-bg min-h-screen  h-full lg:w-1/5  w-full lg:pt-[9px] 
       // ${menuState ? "visible" : " hidden lg:flex "}
     `}
       >
-        <div className="flex lg:w-[20vw] w-screen flex-col">
+        <div className="flex lg:w-[20vw] w-screen flex-col basis-[70%">
           {/* USERNAME  */}
-          <div className="flex justify-between w-full items-center lg:pb-[12px] px-4  border-color-1 shadow-lg">
+          <div className="flex justify-between w-full items-center lg:pb-[12px] px-4  border-color-1 shadow-lg basis-[10%]">
             <h2 className="text-slate-200 font-semibold text-xl md:text-3xl">
               YAP JOINT
             </h2>
@@ -127,7 +141,7 @@ export default function Sidebar() {
 
           {/* text channels Title */}
 
-          <div className="flex  justify-between items-center py-3 px-4 font-bold">
+          <div className="flex basis-[15%] justify-between items-center py-3 px-4 font-bold">
             <div className="flex items-center">
               {channelsDD ? (
                 <RiArrowDropUpLine
@@ -149,14 +163,14 @@ export default function Sidebar() {
               </h2>
             </div>
             <FaPlus
-              onClick={handleAddChannel}
+              onClick={() => setShowAddChannelForm(!showAddChannelForm)}
               className="text-color-1 cursor-pointer hover:text-white"
             ></FaPlus>
           </div>
           {/* CHANNELS  */}
           <div
-            className={`flex z-50 lg:w-auto sm:w-[60%] w-[42%] ${
-              channelsDD ? "visible" : "hidde"
+            className={`flex overflow-scroll no-scrollbar basis-[50%] z-50 lg:w-auto sm:w-[60%] w-[42%] ${
+              channelsDD ? "visible" : "hidden"
             }`}
           >
             <SidebarChannels channels={channels}></SidebarChannels>
@@ -165,7 +179,7 @@ export default function Sidebar() {
 
         <div className="flex flex-col lg:mb-3 sm:mb-5 mb-12">
           {/* VC  */}
-          <VC></VC>
+          {/* <VC></VC> */}
 
           {/* PFP AND NAME  */}
           <Profile

@@ -189,7 +189,7 @@ export default function ChatInput({ handleMessageUpdate }) {
               onChange={(e) => setChatInput(e.target.value)}
               disabled={!activeChannel}
               type="text"
-              className="w-full bg-transparent outline-none lg:mx-2 mx-1 py-2 px-2 lg:px-3"
+              className="w-full bg-transparent text-gray-300 outline-none lg:mx-2 mx-1 py-2 px-2 lg:px-3"
               placeholder={`Message ${
                 activeChannel ? "#" + activeChannel : ""
               }`}

@@ -8,17 +8,16 @@ export default function Message({ messageInfo }) {
   let tm = null;
   let time=null;
   if(tsString){
+    console.log(tsString)
     tm = tsString.split(":");
     time=`${tm[0]}:${tm[1]}`
   }
 
-  console.log(uploadedFile)
+  // console.log(uploadedFile)
 
   const pfp = user.photo;
 
   if(message == "" || message == " ") return <></>;
-
-
 
   return (
     <div className="flex w-full items-center py-1 lg:py-2">
@@ -31,11 +30,11 @@ export default function Message({ messageInfo }) {
         className="rounded-full mx-2 lg:mx-4 self-start"
       ></Image>
       <div className="flex flex-col lg:w-auto sm:w-[90%] w-[80%]">
-        <div className="flex items-center gap-4">
-          <h3 className="text-slate-300 text-sm lg:text-base font-semibold mr-4 lg:mr-8 ">
+        <div className="flex items-center gap-2">
+          <h3 className="text-slate-300 text-sm lg:text-base font-semibold mr-4">
             {user.displayName}
           </h3>
-          <p className="text-[.6rem] lg:text-xs font-semibold text-color-1 lg:px-2 self-end">
+          <p className="text-[.6rem] lg:text-xs font-semibold text-color-1 lg:px-2 sel">
             {time}
           </p>
         </div>
