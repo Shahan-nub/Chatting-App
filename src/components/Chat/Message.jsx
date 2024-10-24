@@ -40,7 +40,7 @@ export default function Message({ messageInfo }) {
           </p>
         </div>
         {message && <p className="text-xs lg:text-[15px] font-extralight text-slate-200">{message}</p>}
-        {uploadedFile && <img src={uploadedFile} alt="uploaded img" width={500} height={500} className="rounded-lg w-[35%]"/>}
+        {uploadedFile && <Image src={uploadedFile} alt="uploaded img" width={500} height={500} className="rounded-lg w-[35%]"/>}
       </div>
     </div>
   );
