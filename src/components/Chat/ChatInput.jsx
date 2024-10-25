@@ -156,7 +156,7 @@ export default function ChatInput({ handleMessageUpdate }) {
         onClick={() =>
           !activeChannel && alert("please select a channel before typing!")
         }
-        className={`w-[98%] backdrop-blur-xl mx-auto my-1 md:my-3 rounded-lg shadow-lg bg-color-2 flex items-center py-1 lg:py-2 px-2 lg:px-4 justify-between basis-[10%] max-sm:basis-[8%] max-lg:basis-[6%] max-md:mb-20
+        className={`w-[98%] backdrop-blur-xl mx-auto my-1 md:my-3 rounded-lg shadow-lg bg-color-2 flex items-center py-1 lg:py-2 px-2 lg:px-4 justify-between basis-[10%] max-sm:basis-[8%] max-lg:basis-[6%] max-md:mb-2
         ${menuState ? "hidden lg:flex" : "visible"}
         `}
       >
