@@ -31,7 +31,7 @@ export default function HomePage() {
     })
   },[dispatch])
   return (
-    <div className="flex fixed w-screen h-screen">
+    <div className="flex w-screen h-screen max-h-screen">
        {user ? (
         <>
           <Sidebar></Sidebar>
