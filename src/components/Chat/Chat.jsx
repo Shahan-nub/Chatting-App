@@ -59,7 +59,7 @@ export default function Chat() {
 
   return (
     <div className="lg:w-4/5 w-full max-h-screen h-screen min-h-screen flex flex-col justify-between">
-      <div className="flex flex-col justify-between h-full max-h-screen w-full">
+      {/* <div className="flex flex-col justify-between h-full max-h-screen w-full"> */}
         <ChatHeader></ChatHeader>
         <div className="overflow-scroll basis-[75%] max-lg:basis-[80%] no-scrollbar">
           {messages &&
@@ -74,7 +74,7 @@ export default function Chat() {
           <div ref={messagesEndRef}></div>
         </div>
         <ChatInput handleMessageUpdate={onMessageUpdate}></ChatInput>
-      </div>
+      {/* </div> */}
     </div>
   );
 }
