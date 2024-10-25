@@ -58,10 +58,10 @@ export default function Chat() {
   }, [messages]);
 
   return (
-    <div className="lg:w-4/5 w-full max-h-screen h-screen min-h-screen flex flex-col justify-between">
+    <div className="lg:w-4/5 w-full max-h-screen h-screen min-h-screen flex flex-col justify-betwe">
       {/* <div className="flex flex-col justify-between h-full max-h-screen w-full"> */}
         <ChatHeader></ChatHeader>
-        <div className="overflow-scroll basis-[75%] max-lg:basis-[80%] no-scrollbar">
+        <div className="overflow-scroll basis-[75%] no-scrollbar">
           {messages &&
             messages.map((messageInfo) => {
               return (
