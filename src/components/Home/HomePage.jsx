@@ -15,7 +15,7 @@ export default function HomePage() {
   const user = useSelector(selectUser);
   useEffect(() => {
     onAuthStateChanged(auth, (authUser) => {
-      console.log(authUser);
+      // console.log(authUser);
       if(authUser){
         // logged in
         dispatch(login({

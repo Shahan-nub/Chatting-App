@@ -1,5 +1,7 @@
-
+"use client"
+import { selectUser } from "@/lib/features/userSlice";
 import Image from "next/image";
+import { useSelector } from "react-redux";
 
 
 export default function Message({ messageInfo }) {
@@ -13,8 +15,9 @@ export default function Message({ messageInfo }) {
     time=`${tm[0]}:${tm[1]}`
   }
 
+  const activeUser = useSelector(selectUser);
   // console.log(uploadedFile)
-
+  // console.log(user.activeUser === activeUser.displayName);
   const pfp = user.photo;
 
   if(message == "" || message == " ") return <></>;
@@ -31,7 +34,7 @@ export default function Message({ messageInfo }) {
       ></Image>
       <div className="flex flex-col lg:w-auto sm:w-[90%] w-[80%]">
         <div className="flex items-center gap-2">
-          <h3 className="text-slate-300 text-sm lg:text-base font-semibold mr-4">
+          <h3 className={` ${user.displayName===activeUser.displayName ? "text-white" : "text-slate-300"} text-sm lg:text-base font-semibold mr-4`}>
             {user.displayName}
           </h3>
           <p className="text-[.6rem] lg:text-xs font-semibold text-color-1 lg:px-2 sel">
