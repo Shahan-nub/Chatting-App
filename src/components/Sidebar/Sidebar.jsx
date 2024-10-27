@@ -59,7 +59,7 @@ export default function Sidebar() {
       try {
         const newChannel = {
           channelName: newChannelName,
-          channelPassword: password==="" && null,
+          channelPassword: password === "" ? null : password,
         };
 
         setDoc(doc(collectionRef), newChannel);
@@ -86,7 +86,9 @@ export default function Sidebar() {
             }}
             className="flex flex-col gap-3 lg:gap-4 mx-auto font-sans"
           >
-            <label className="text-xs lg:text-base font-semibold">Channel Name:</label>
+            <label className="text-xs lg:text-base font-semibold">
+              Channel Name:
+            </label>
             <input
               ref={channelNameRef}
               type="text"
@@ -101,20 +103,20 @@ export default function Sidebar() {
               placeholder="Enter password..."
               className="bg-black rounded-sm border-1 border-white focus:border-white text-white px-3 py-2 text-xs lg:text-base"
             />
-          
-              <button
-                type="submit"
-                className={`bg-white py-2 px-4 rounded-md text-black text-sm mt-3`}
-              >
-                Create
-              </button>
-              <button
-                type="btn"
-                onClick={() => setShowAddChannelForm(false)}
-                className={`bg-red-500 py-2 px-4 rounded-md text-white text-xl text-center font-bold`}
-              >
-                <IoIosClose className="mx-auto"></IoIosClose>
-              </button>
+
+            <button
+              type="submit"
+              className={`bg-white py-2 px-4 rounded-md text-black text-sm mt-3`}
+            >
+              Create
+            </button>
+            <button
+              type="btn"
+              onClick={() => setShowAddChannelForm(false)}
+              className={`bg-red-500 py-2 px-4 rounded-md text-white text-xl text-center font-bold`}
+            >
+              <IoIosClose className="mx-auto"></IoIosClose>
+            </button>
           </form>
         </div>
       )}
