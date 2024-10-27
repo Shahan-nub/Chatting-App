@@ -17,6 +17,7 @@ import { selectMenu } from "@/lib/features/menuSlice";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { TbLoader2 } from "react-icons/tb";
 import EmojiPicker from "emoji-picker-react";
+import { IoSend } from "react-icons/io5";
 
 
 
@@ -221,13 +222,13 @@ export default function ChatInput({ handleMessageUpdate }) {
                 : "text-slate-200 hover:text-white"
             }`}
           ></FaFileUpload>
-          <MdOutlineGif className="text-slate-200 mx-1 md:mx-2 text-lg lg:text-3xl cursor-pointer hover:text-white"></MdOutlineGif>
           <FaSmile onClick={() => setShowEmoji(!showEmoji)} className="text-slate-200 mx-1 md:mx-2 text-base lg:text-lg cursor-pointer hover:text-white"></FaSmile>
           {showEmoji && (
             <div className="absolute bottom-0 left-[10%]">
               <EmojiPicker onEmojiClick={onEmojiClick}></EmojiPicker>
             </div>
           )}
+          <IoSend onClick={handleFormSubmit} className={`text-slate-200 mx-1 md:mx-2  lg:text-lg cursor-pointer hover:text-white ${chatInput.length > 0 ? "text-blue-500" : ""}`}/>
         </div>
       </div>
     </>
